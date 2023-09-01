@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import ModeToggler from '@/components/mode-toggler';
 import { User } from 'lucide-react';
+import Cart from '@/components/cart';
 
 export default function SiteHeader() {
     return (
@@ -20,6 +21,7 @@ export default function SiteHeader() {
                             <span className='sr-only'>User</span>
                         </Button>
                     </NavLink>
+                    <Cart/>
                     <ModeToggler />
                 </nav>
             </div>

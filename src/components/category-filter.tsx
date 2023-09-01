@@ -5,51 +5,52 @@ import { Button } from '@/components/ui/button';
 
 interface CategoryFilterProps extends HTMLAttributes<HTMLDivElement> {
     onCategoryChange: (_: string) => void;
-    currentCategory: string
+    currentCategory: string;
 }
 
 export default function CategoryFilter({
     className,
     onCategoryChange,
-    currentCategory
+    currentCategory,
 }: CategoryFilterProps) {
-
     // Fetch all the category names
-    const {
-        data: categories,
-        isLoading,
-        isSuccess,
-    } = useGetCategoriesQuery();
+    const { data: categories, isLoading, isSuccess } = useGetCategoriesQuery();
 
-    if(isLoading){
+    if (isLoading) {
         return null;
     }
 
     return (
-        isSuccess && 
-        <div className={cn('flex overflow-x-auto space-x-2 w-full', className)}>
-            {/* Display a list of available categories */}
-            <Button
-                onClick={() => onCategoryChange('all')}
-                size='lg'
-                variant={currentCategory === 'all' ? 'greyscale' : 'ghost'}
-                className='flex-shrink-0'
+        isSuccess && (
+            <div
+                className={cn(
+                    'flex overflow-x-auto space-x-2 w-full',
+                    className
+                )}
             >
-                All
-            </Button>
-            {categories?.map((category) => (
+                {/* Display a list of available categories */}
                 <Button
-                    onClick={() => onCategoryChange(category)}
-                    key={category}
+                    onClick={() => onCategoryChange('all')}
                     size='lg'
-                    variant={
-                        currentCategory === category ? 'greyscale' : 'ghost'
-                    }
+                    variant={currentCategory === 'all' ? 'greyscale' : 'ghost'}
                     className='flex-shrink-0'
                 >
-                    {category}
+                    All
                 </Button>
-            ))}
-        </div>
+                {categories?.map((category) => (
+                    <Button
+                        onClick={() => onCategoryChange(category)}
+                        key={category}
+                        size='lg'
+                        variant={
+                            currentCategory === category ? 'greyscale' : 'ghost'
+                        }
+                        className='flex-shrink-0'
+                    >
+                        {category}
+                    </Button>
+                ))}
+            </div>
+        )
     );
 }

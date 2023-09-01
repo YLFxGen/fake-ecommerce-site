@@ -1,12 +1,18 @@
 import { cn } from '@/lib/utils';
 import React, { useMemo, useState } from 'react';
 import { useGetProductsByCategoryQuery } from '@/redux/slices/api-slice';
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import {
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select';
 import CategoryFilter from '@/components/category-filter';
 import ProductCard from '@/components/product-card';
 import Pagination from '@/components/pagination';
 import { RefreshCw } from 'lucide-react';
-
 
 export default function ProductList({
     className,
@@ -101,20 +107,28 @@ export default function ProductList({
                     />
                     {/* Page size selection */}
                     <div className='flex items-center ps-8 mt-4 sm:mt-0 space-x-2'>
-                        <p className='text-sm font-medium whitespace-nowrap'>Products per page</p>
-                        <Select value={`${pageSize}`} onValueChange={(value:string)=>setPageSize(Number(value))}>
+                        <p className='text-sm font-medium whitespace-nowrap'>
+                            Products per page
+                        </p>
+                        <Select
+                            value={`${pageSize}`}
+                            onValueChange={(value: string) =>
+                                setPageSize(Number(value))
+                            }
+                        >
                             <SelectTrigger className='h-8 w-[70px]'>
-                                <SelectValue placeholder={`${pageSize}`}/>
+                                <SelectValue placeholder={`${pageSize}`} />
                             </SelectTrigger>
                             <SelectContent>
                                 <SelectGroup>
-                                    {
-                                        [5, 10].map((productPerPage)=>(
-                                            <SelectItem key={productPerPage} value={`${productPerPage}`}>
-                                                {productPerPage}
-                                            </SelectItem>
-                                        ))
-                                    }
+                                    {[5, 10].map((productPerPage) => (
+                                        <SelectItem
+                                            key={productPerPage}
+                                            value={`${productPerPage}`}
+                                        >
+                                            {productPerPage}
+                                        </SelectItem>
+                                    ))}
                                 </SelectGroup>
                             </SelectContent>
                         </Select>
