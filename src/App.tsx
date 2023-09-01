@@ -4,6 +4,7 @@ import IndexPage from '@/pages/page';
 import { ThemeProvider } from 'next-themes';
 import { Provider } from 'react-redux';
 import { store } from '@/redux/store';
+import ProfilePage from '@/pages/profile/page';
 
 const router = createBrowserRouter([
     {
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
             {
                 path: '',
                 element: <IndexPage />,
+            },
+            {
+                path: '/profile',
+                element: <ProfilePage />,
             },
         ],
     },
