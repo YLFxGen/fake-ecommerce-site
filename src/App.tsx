@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import IndexLayout from '@/pages/layout';
 import IndexPage from '@/pages/page';
+import { ThemeProvider } from 'next-themes';
 
 const router = createBrowserRouter([
     {
@@ -18,7 +19,14 @@ const router = createBrowserRouter([
 function App() {
     return (
         <>
-            <RouterProvider router={router} />
+            <ThemeProvider
+                attribute='class'
+                defaultTheme='system'
+                enableSystem
+                disableTransitionOnChange
+            >
+                <RouterProvider router={router} />
+            </ThemeProvider>
         </>
     );
 }
